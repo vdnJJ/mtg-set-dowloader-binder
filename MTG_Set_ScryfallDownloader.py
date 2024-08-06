@@ -91,17 +91,17 @@ def save_card_image(card, is_from_list=False):
 
     if 'image_uris' in card:
         name = get_valid_filename(card['name'])  # Sanitize the card name for the file name
-        file_path = os.path.join(dir_path, f"{collector_number}_{name}.jpg")  # File path for the card image
+        file_path = os.path.join(dir_path, f"{collector_number}_{name}.png")  # File path for the card image
     elif 'type_line' in card and card['type_line'] != 'Card // Card':
         if 'card_faces' in card and len(card['card_faces']) == 2:
             name = get_valid_filename(card['card_faces'][0]['name'])
-            file_path_front = os.path.join(dir_path, f"{collector_number}_{name}_front.jpg")
-            file_path_rear = os.path.join(dir_path, f"{collector_number}_{name}_rear.jpg")
+            file_path_front = os.path.join(dir_path, f"{collector_number}_{name}_front.png")
+            file_path_rear = os.path.join(dir_path, f"{collector_number}_{name}_rear.png")
     elif 'layout' in card and card['layout'] == 'reversible_card':
         if 'card_faces' in card and len(card['card_faces']) == 2:
             name = get_valid_filename(card['card_faces'][0]['name'])
-            file_path_front = os.path.join(dir_path, f"{collector_number}_{name}_front.jpg")
-            file_path_rear = os.path.join(dir_path, f"{collector_number}_{name}_rear.jpg")
+            file_path_front = os.path.join(dir_path, f"{collector_number}_{name}_front.png")
+            file_path_rear = os.path.join(dir_path, f"{collector_number}_{name}_rear.png")
 
     if file_path is not None:
         writefile(card['image_uris']['png'], file_path)  # Download and save the card image
