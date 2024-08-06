@@ -39,7 +39,7 @@ def get_all_cards_url(verify_ssl):
     # Function to get the URL for bulk data containing all Magic: The Gathering cards
     request_url = requests.get('https://api.scryfall.com/bulk-data', verify=verify_ssl)
     data = request_url.json()
-    return data['data'][3]['download_uri']  # Return the download URL for the card data
+    return data['data'][4]['download_uri']  # Return the download URL for the card data
 
 def get_card_data_and_download(card_name, set_code, card_number, is_from_list=False):
     # Function to get card data from the Scryfall API and download the card image
