@@ -39,7 +39,7 @@ def get_all_cards_url(verify_ssl):
     # Function to get the URL for bulk data containing all Magic: The Gathering cards
     request_url = requests.get('https://api.scryfall.com/bulk-data', verify=verify_ssl)
     data = request_url.json()
-    return data['data'][4]['download_uri']  # Return the download URL for the card data
+    return data['data'][3]['download_uri']  # Return the download URL for the card data
 
 def get_card_data_and_download(card_name, set_code, card_number, is_from_list=False):
     # Function to get card data from the Scryfall API and download the card image
@@ -104,12 +104,12 @@ def save_card_image(card, is_from_list=False):
             file_path_rear = os.path.join(dir_path, f"{collector_number}_{name}_rear.jpg")
 
     if file_path is not None:
-        writefile(card['image_uris']['large'], file_path)  # Download and save the card image
+        writefile(card['image_uris']['png'], file_path)  # Download and save the card image
         print(f"Card image saved: {file_path}")
         saved_count += 1
     elif file_path_front is not None and file_path_rear is not None:
-        writefile(card['card_faces'][0]['image_uris']['large'], file_path_front)
-        writefile(card['card_faces'][1]['image_uris']['large'], file_path_rear)
+        writefile(card['card_faces'][0]['image_uris']['png'], file_path_front)
+        writefile(card['card_faces'][1]['image_uris']['png'], file_path_rear)
         print(f"Card images saved: {file_path_front}, {file_path_rear}")
         saved_count += 1
     else:
